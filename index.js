@@ -1,26 +1,22 @@
-const http = require("http");
-const fs = require("fs");
-const url = require("url");
+const express = require("express");
+const app = express();
 
-const getPage = (pathname) => {
-  const paths = ["/", "/about", "/contact-me"];
-  if (pathname === "/") {
-    return { page: "./index.html", resCode: 200 };
-  } else if (!paths.includes(pathname)) {
-    return { page: "./404.html", resCode: 404 };
-  } else {
-    return { page: "." + pathname + ".html", resCode: 200 };
-  }
-};
+app.get("/", (req, res) => {
+  res.sendFile("index.html", { root: __dirname });
+});
 
-http
-  .createServer((req, res) => {
-    const pathname = url.parse(req.url, true).pathname;
-    const { page, resCode } = getPage(pathname);
-    fs.readFile(page, (err, data) => {
-      res.writeHead(resCode, { "Content-Type": "text/html" });
-      res.write(data);
-      return res.end();
-    });
-  })
-  .listen(8080);
+app.get("/about", (req, res) => {
+  res.sendFile("about.html", { root: __dirname });
+});
+
+app.get("/contact-me", (req, res) => {
+  res.sendFile("contact-me.html", { root: __dirname });
+});
+
+app.use(function (req, res, next) {
+  res.status(404).sendFile("./404.html", { root: __dirname });
+});
+
+app.listen("8080", () => {
+  console.log("Hello express");
+});

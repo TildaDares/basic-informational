@@ -1,0 +1,22 @@
+{
+  "name": "basic-informational",
+  "version": "1.0.0",
+  "description": "Learning node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TildaDares/basic-informational.git"
+  },
+  "author": "Tilda Udufo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TildaDares/basic-informational/issues"
+  },
+  "homepage": "https://github.com/TildaDares/basic-informational#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
